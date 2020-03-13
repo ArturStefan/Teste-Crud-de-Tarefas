@@ -18,7 +18,7 @@ def index(request):
         return redirect('/')
 
     context = {'tarefas': tarefas,'form':form} 
-    return render(request, 'tarefas/lista.html', context)
+    return render(request, 'tarefas/lista_tarefas.html', context)
 
 def atualizarTarefa(request, pk):
     tarefa = Tarefa.objects.get(id=pk)
@@ -30,8 +30,17 @@ def atualizarTarefa(request, pk):
         if form.is_valid():
             form.save()
             return redirect('/')
-
-
+            
 
     context = {'form':form}
     return render(request, 'tarefas/atualizar_tarefa.html', context)
+
+def deletarTarefa(request, pk):
+    item = Tarefa.objects.get(id=pk)
+
+    if request.method == 'POST':
+        item.delete()
+        return redirect('/')
+
+    context ={'item' : item}
+    return render(request, 'tarefas/deletar_tarefa.html', context)
