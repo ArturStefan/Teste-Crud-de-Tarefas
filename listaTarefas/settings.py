@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tarefas',
+    'usuarios'
 ]
 
 MIDDLEWARE = [
@@ -120,6 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/lista_tarefas'
 
 LOGOUT_REDIRECT_URL = '/registro/login'

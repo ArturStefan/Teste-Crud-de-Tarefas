@@ -44,6 +44,11 @@
         background-color: #ffae19;
         border-color: #e59400;
     }
+    .btn-sair {
+        background-color: #cc4040ce;
+        border-color: #ffae19;
+        margin-left: 496px;
+    }
 
 
 </style>
@@ -51,8 +56,7 @@
 <div class="center-column"> 
 
 
-
-    <form method="POST" action="/">
+    <form method="POST" action="lista_tarefas">
         {% csrf_token %}
         {{form.titulo}}
         <input class="btn btn-info" type="submit" value="Criar Tarefa" name= "Criar Tarefa">
@@ -61,7 +65,7 @@
     <div class="todo-list">
         {% for tarefa in tarefas %}
             <div class="item-row">
-                <a class="btn btn-sm btn-info" href="{% url 'atualizar-tarefa' tarefa.id %}">Atualizar</a>
+                <a class="btn btn-sm btn-info " href="{% url 'atualizar-tarefa' tarefa.id %}">Atualizar</a>
                 <a class="btn btn-sm btn-danger" href="{% url 'deletar-tarefa' tarefa.id %}">Deletar</a>
        
                 {% if tarefa.completa == True %}
@@ -72,4 +76,5 @@
             </div>
         {% endfor %}
     </div>
+    <a class="btn btn-danger btn-sair" href="registro/logout" >Sair</a>
 </div>

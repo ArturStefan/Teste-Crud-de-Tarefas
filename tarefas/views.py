@@ -5,6 +5,10 @@ from .models import *
 from .forms import *
 
 def index(request):
+    return render(request, 'tarefas/home.html')
+
+def lista(request):
+    
     tarefas = Tarefa.objects.all()
     
     form = TarefaForm()
@@ -15,12 +19,14 @@ def index(request):
         if form.is_valid():
             form.save()
         
-        return redirect('/')
+        return redirect('lista-tarefas')
 
     context = {'tarefas': tarefas,'form':form} 
     return render(request, 'tarefas/lista_tarefas.html', context)
 
+
 def atualizarTarefa(request, pk):
+    
     tarefa = Tarefa.objects.get(id=pk)
 
     form = TarefaForm(instance=tarefa)
@@ -29,18 +35,19 @@ def atualizarTarefa(request, pk):
         form = TarefaForm(request.POST, instance=tarefa)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('lista-tarefas')
             
 
     context = {'form':form}
     return render(request, 'tarefas/atualizar_tarefa.html', context)
 
 def deletarTarefa(request, pk):
+
     item = Tarefa.objects.get(id=pk)
 
     if request.method == 'POST':
         item.delete()
-        return redirect('/')
+        return redirect('lista-tarefas')
 
     context ={'item' : item}
     return render(request, 'tarefas/deletar_tarefa.html', context)
