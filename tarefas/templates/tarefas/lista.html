@@ -9,6 +9,7 @@
 
 {% for tarefa in tarefas %}
     <div>
+        <a href="{% url 'atualizar-tarefa' tarefa.id %}">Atualizar</a>
         <p>{{tarefa}}</p>
     </div>
 {% endfor %}

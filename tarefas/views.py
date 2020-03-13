@@ -5,7 +5,6 @@ from .models import *
 from .forms import *
 
 def index(request):
-
     tarefas = Tarefa.objects.all()
     
     form = TarefaForm()
@@ -19,5 +18,20 @@ def index(request):
         return redirect('/')
 
     context = {'tarefas': tarefas,'form':form} 
-
     return render(request, 'tarefas/lista.html', context)
+
+def atualizarTarefa(request, pk):
+    tarefa = Tarefa.objects.get(id=pk)
+
+    form = TarefaForm(instance=tarefa)
+
+    if request.method == 'POST':
+        form = TarefaForm(request.POST, instance=tarefa)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+
+
+    context = {'form':form}
+    return render(request, 'tarefas/atualizar_tarefa.html', context)
