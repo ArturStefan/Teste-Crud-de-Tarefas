@@ -1,9 +1,49 @@
-<p>Você tem certeza que quer deletar "{{item}}" ?</p>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
-<a href="{% url 'lista-tarefas' %}">Cancelar</a>
+<style>
 
-<form method="POST" action="">
-    {% csrf_token %}
-    <input type="submit" value="confirmar" name="Confirmar">
+    body {
+        background-color: #638CB8;
+    }
+
+    .center-column {
+        width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 3px;
+        box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+    }
+
+    .item-row {
+        background-color: #906abd;
+        margin: 10px;
+        padding: 20px;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 16px;
+        box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+    }
+
+    .btn-d {
+        background-color: #906abd;
+        margin-left: 360px;
+    }
+    .btn-sair {
+        margin-top: 30px;
+        background-color: #906abd;
+        margin-left: 20px;
+    }
+</style>
+
+<div class="center-column">
+    <center><p class="item-row">Você tem certeza que quer deletar "{{item}}" ?</p></center>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input class="btn-sair" type="submit" value="Confirmar" name="Confirmar">
+        <a href="{% url 'lista-tarefas' %}"><button class="btn-d">Cancelar</button></a>
+        
     
-</form>
+    </form>
+</div>
